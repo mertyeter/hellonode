@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mshowto-deployment
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: mshowto-hellonode
+    spec:
+      containers:
+      - name: mshowto-hellonode
+        image: mshowtocr.azurecr.io/mshowto-hellonode
+        ports:
+        - containerPort: 5001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mshowto-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5001
+  selector:
+    app: mshowto-hellonode
