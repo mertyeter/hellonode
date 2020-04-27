@@ -17,6 +17,10 @@ spec:
       containers:
       - name: mshowto-hellonode
         image: mshowtocr.azurecr.io/mshowto-hellonode
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
         ports:
         - containerPort: 5001
 ---
