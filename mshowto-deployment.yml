@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mshowto-hellonode
-        image: mshowtocr.azurecr.io/mshowto-hellonode
+        image: mshowto.azurecr.io/hellonode:v1
         resources:
           limits:
             memory: "128Mi"
